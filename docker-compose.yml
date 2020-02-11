@@ -1,7 +1,7 @@
 version: '3.5'
 services:
-  postgres:
-    container_name: savime_container
+  savime_server:
+    container_name: savime_server
     image: savime
     environment:
       SHM_STORAGE_DIR: ${SHM_STORAGE_DIR}
