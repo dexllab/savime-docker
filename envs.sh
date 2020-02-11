@@ -5,8 +5,8 @@ SEC_STORAGE_DIR=/dev/shm/savime
 MAX_THREADS=4
 
 HOST_SAVIME_PORT=65000
-HOST_SHM_STORAGE_DIR=/home/daniel/Desktop/savime/shm
-HOST_SEC_STORAGE_DIR=/home/daniel/Desktop/savime/sec
+HOST_SHM_STORAGE_DIR=/dev/shm/savime
+HOST_SEC_STORAGE_DIR=/dev/shm/savime
 
 DETACH_CONTAINER_FROM_TERMINAL=true
 
