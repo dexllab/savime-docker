@@ -28,6 +28,6 @@ ENV SHM_STORAGE_DIR="/dev/shm/savime"
 ENV SEC_STORAGE_DIR="/dev/shm/savime"
 ENV MAX_THREADS=1
 RUN printf "savime -D -m \$MAX_THREADS -s \$SHM_STORAGE_DIR -d \$SEC_STORAGE_DIR\n" >> run.sh
-RUN printf "chmod 0777 /tmp/savime-socket\nchmod -R 0665 \$SHM_STORAGE_DIR\nchmod -R 0665 \$SEC_STORAGE_DIR\n" >> run.sh
+RUN printf "chmod 0777 /tmp/savime-socket\nchmod -R 0666 \$SHM_STORAGE_DIR\nchmod -R 0666 \$SEC_STORAGE_DIR\n" >> run.sh
 RUN printf "while true; do echo > /dev/null; done;\n" >> run.sh
 CMD ["sh", "run.sh"]
