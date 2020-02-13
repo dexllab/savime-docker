@@ -34,6 +34,7 @@ EXPOSE 65000
 ENV SHM_STORAGE_DIR="/dev/shm/savime"
 ENV SEC_STORAGE_DIR="/dev/shm/savime"
 ENV MAX_THREADS=1
+
 RUN printf "mkdir -p \$SHM_STORAGE_DIR\n" > run.sh
 RUN printf "mkdir -p \$SEC_STORAGE_DIR\n" >> run.sh
 RUN printf "export PATH=\$PATH:/home/user/savime/bin\n" >> run.sh
