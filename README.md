@@ -14,5 +14,6 @@ Finally, run `./run.sh start` to start a container named `savime_container` and 
 To assure that the container is running accordingly: 
 - Check whether there exists a file named `savime_socket` in the `/tmp` dir. Your user must be the owner of this file and have read/write/run permissions over it.
 - Check also whether your user is the owner of the directory `$HOST_SAVIME_DIR` and have read/write/run permissions over it.
+- Run the savime client (`savimec`).
 
 Ps.: To avoid permission problems, the building procedure assigns the host user and group --- which ran the script `build.sh` --- to the `savime` image by resorting to the Linux command `id`.
