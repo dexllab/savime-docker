@@ -19,7 +19,7 @@ start () {
         fi
     fi
     
-    docker run --rm -p "$HOST_SAVIME_PORT":65000 -v "$HOST_SAVIME_DIR":/dev/shm/savime -v /tmp:/tmp -u $(id -u ${USER}):$(id -g ${USER}) --name savime_container -d savime -e MAX_THREADS=$MAX_THREADS > /dev/null 2>&1 
+    docker run --rm -p "$HOST_SAVIME_PORT":65000 -v "$HOST_SAVIME_DIR":/dev/shm/savime -v /tmp:/tmp -u $(id -u ${USER}):$(id -g ${USER}) --name savime_container -e MAX_THREADS=$MAX_THREADS -d savime > /dev/null 2>&1 
     if [ $? -eq  0 ]; then
         echo "Savime container started succesfully."
     fi
