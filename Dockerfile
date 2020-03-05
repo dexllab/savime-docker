@@ -26,7 +26,6 @@ WORKDIR /home/"$USERNAME"/savime-src/release
 RUN cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/home/"$USERNAME"/savime --target savime-bin ../
 RUN make -j $NUM_THREADS_MAKE && make install
 WORKDIR /home/"$USERNAME"/
-RUN rm -rf savime-src
 RUN chown -R "$USERNAME" /home/"$USERNAME"/savime
 RUN chgrp -R $(getent group "$GROUP_ID" | cut -d: -f1) /home/"$USERNAME"/savime
 WORKDIR /dev/shm/savime 
