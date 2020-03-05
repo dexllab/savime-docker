@@ -10,10 +10,13 @@ start () {
         echo "Could not create the dir $HOST_SAVIME_DIR: the directory already exists. I'm proceeding. Please check if you own and have read/write/run permission over this directory." 
     fi
     
-    mv /tmp/savime-socket /tmp/"$SOCKET_BACKUP_NAME" > /dev/null 2>&1
-    if [ $? -ne 0 ]; then
-        echo "Check the permissions on the file /tmp/savime-socket; it looks like you do not have permission over it. Exiting."
-        exit 1
+    test -e /tmp/savime-socket 
+    if [ $? -eq 0 ]; then
+        mv /tmp/savime-socket /tmp/"$SOCKET_BACKUP_NAME" > /dev/null 2>&1
+        if [ $? -ne 0 ]; then
+            echo "Check the permissions on the file /tmp/savime-socket; it looks like you do not have permission over it. Exiting."
+            exit 1
+        fi
     fi
     
     docker run --rm -p "$HOST_SAVIME_PORT":65000 -v "$HOST_SAVIME_DIR":/dev/shm/savime -v /tmp:/tmp -u $(id -u ${USER}):$(id -g ${USER}) --name savime_container -d savime > /dev/null 2>&1 
