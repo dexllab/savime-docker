@@ -2,7 +2,7 @@
 
 ENVS_FPATH="./envs.sh"
 source "$ENVS_FPATH"
-export SOCKET_BACKUP_NAME=savime_scoket_"$(uptime -s | sed 's/[ |:|-]/_/g')"
+export SOCKET_BACKUP_NAME=savime_socket_"$(uptime -s | sed 's/[ |:|-]/_/g')"
 
 start () {
     mkdir -p $HOST_SAVIME_DIR > /dev/null 2>&1
@@ -19,9 +19,11 @@ start () {
         fi
     fi
     
-    docker run --rm -p "$HOST_SAVIME_PORT":65000 -v "$HOST_SAVIME_DIR":/dev/shm/savime -v /tmp:/tmp -u $(id -u ${USER}):$(id -g ${USER}) --name savime_container -e MAX_THREADS=$MAX_THREADS -d savime > /dev/null 2>&1 
+    docker run -dit -p "$HOST_SAVIME_PORT":65000 -v "$HOST_SAVIME_DIR":/dev/shm/savime -v /tmp:/tmp -u $(id -u ${USER}):$(id -g ${USER}) --name savime_container -e MAX_THREADS=$MAX_THREADS -d savime > /dev/null 2>&1 
     if [ $? -eq  0 ]; then
         echo "Savime container started succesfully."
+    else 
+        echo "Could not run Savime container. Is the image created?"
     fi
     
     chmod 777 /tmp/savime-socket
